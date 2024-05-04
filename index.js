@@ -77,6 +77,15 @@ function processHotelResults(array) {
   createHotelResults(hotelList);
 }
 
+//Helper functions
+
+//create div element and set class
+function createDivClass(className) {
+  const domElement = document.createElement("div");
+  domElement.classList.add(className);
+  return domElement;
+}
+
 //create the hotelresults in html
 function createHotelResults(array) {
   const container = document.querySelector(".container");
@@ -84,28 +93,26 @@ function createHotelResults(array) {
 
   array.forEach((element) => {
     if (i < 15) {
-      const items = document.createElement("div");
-      items.setAttribute("class", "items");
+      const items = createDivClass("items");
 
-      const name = document.createElement("div");
-      name.setAttribute("class", "name");
-      name.innerHTML = element.hotelName;
+      const name = createDivClass("name");
+      name.innerText = element.hotelName;
       container.appendChild(items);
       items.appendChild(name);
 
-      const image = document.createElement("div");
-      image.setAttribute("class", "image");
+      const image = createDivClass("image");
+
       const img = document.createElement("img");
       image.appendChild(img);
       img.src = element.imageUrl;
       items.appendChild(image);
 
-      const details = document.createElement("div");
-      details.setAttribute("class", "details");
-      const review = document.createElement("div");
-      review.setAttribute("class", "review");
-      const price = document.createElement("div");
-      price.setAttribute("class", "price");
+      const details = createDivClass("details");
+
+      const review = createDivClass("review");
+
+      const price = createDivClass("price");
+
       review.innerHTML = `<b>Review:</b> ${element.review}`;
       price.innerHTML = `<b>Price:</b> ${element.price}`;
       details.appendChild(review);
